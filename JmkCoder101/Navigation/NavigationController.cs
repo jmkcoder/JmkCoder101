@@ -19,8 +19,8 @@ namespace JmkCoder101.Navigation
             // Use reflection to get the methods that should be displayed in the navbar
             var controllers = Assembly.GetAssembly(typeof(ComponentViewModel))?.GetTypes()?.Where(x => x.IsAssignableTo(typeof(Controller)))?.Select(x => new { x?.Name, x?.BaseType });
             var methods = controllers?
-                .Where(x => x?.BaseType?.GetMethod("Example") != null)
-                .Select(x => new { x.Name, DeclaringMethod = x.BaseType?.GetMethod("Example") }).ToList();
+                .Where(x => x?.BaseType?.GetMethod("Example") != null)?
+                .Select(x => new { x?.Name, DeclaringMethod = x?.BaseType?.GetMethod("Example") }).ToList();
 
             // Create a list of NavbarItems from the methods
             var navbarItems = new List<NavbarItem>();
