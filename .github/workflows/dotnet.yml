@@ -23,4 +23,4 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Publish
-      run: dotnet publish -c Release -o Publish -p "JmkCoder101/JmkCoder101.cs" /p:PublishProfile="jmkcoder101-001-site1 - Web Deploy.pubxml" /p:password=$DEPLOY_PASSWD --verbosity normal
+      run: dotnet publish -c Release -o Publish -project "./JmkCoder101.csproj" /p:PublishProfile="./Properties/PublishProfilesJmkCoder101/jmkcoder101-001-site1 - Web Deploy.pubxml" /p:password=$DEPLOY_PASSWD
