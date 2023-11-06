@@ -1,20 +1,20 @@
-# name: Web Deploy
+name: Web Deploy
 
-# on:
-#   push:
-#     branches:
-#       - master
+on:
+  push:
+    branches:
+      - master
 
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Setup .NET Core
-#         uses: actions/setup-dotnet@v1
-#         with:
-#           dotnet-version: '6.x.x'
-#       - name: Restore dependencies
-#         run: dotnet restore
-#       - name: Publish
-#         run: dotnet build /home/runner/work/JmkCoder101/JmkCoder101/JmkCoder101/JmkCoder101.csproj -c Release /p:DeployOnBuild=true /p:PublishProfile="jmkcoder101-001-site1 - Web Deploy" /p:Password=$DEPLOY_PASSWD
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.x.x'
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build /home/runner/work/JmkCoder101/JmkCoder101/JmkCoder101/JmkCoder101.csproj
