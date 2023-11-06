@@ -2,10 +2,10 @@
 @model CalloutViewModel
 
 @{
-    var calloutType = @Model.CalloutType.ToString().ToLower();
+    var color = @Model.Color.ToString().ToLower();
 }
 
-<div class="callout callout-@calloutType">
+<div class="callout callout-@color">
     <h4>@Model.Title</h4>
     <p>@Model.Message</p>
 </div>

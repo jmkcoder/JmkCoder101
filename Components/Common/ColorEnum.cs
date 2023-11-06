@@ -1,7 +1,9 @@
-﻿namespace Components.Alert
+﻿namespace Components.Common
 {
-    public enum AlertEnum
+    public enum ColorEnum
     {
+        Primary,
+        Secondary,
         Success,
         Info,
         Warning,

@@ -1,4 +1,5 @@
-﻿using Components.Component.ViewModels;
+﻿using Components.Common;
+using Components.Component.ViewModels;
 
 namespace Components.Callout
 {
@@ -6,6 +7,6 @@ namespace Components.Callout
     {
         public string? Title { get; set; }
         public string? Message { get; set; }
-        public CalloutEnum CalloutType { get; set; }
+        public ColorEnum Color { get; set; }
     }
 }

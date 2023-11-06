@@ -1,8 +1,9 @@
-﻿using Components.Component.ViewModels;
+﻿using Components.Common;
+using Components.Component.ViewModels;
 
 namespace Components.Callout
 {
-    public partial class CalloutViewModel : ComponentViewModel
+    public partial class CalloutViewModel
     {
         public override ExampleViewModel Example()
         {
@@ -16,19 +17,19 @@ namespace Components.Callout
                 {
                     new CalloutViewModel
                     {
-                        CalloutType = CalloutEnum.Info,
+                        Color = ColorEnum.Info,
                         Title = "This is an info callout.",
                         Message = "Example text to show it in action.",
                     },
                     new CalloutViewModel
                     {
-                        CalloutType = CalloutEnum.Warning,
+                        Color = ColorEnum.Warning,
                         Title = "This is a warning callout.",
                         Message = "Example text to show it in action.",
                     },
                     new CalloutViewModel
                     {
-                        CalloutType = CalloutEnum.Danger,
+                        Color = ColorEnum.Danger,
                         Title = "This is a danger callout.",
                         Message = "Example text to show it in action.",
                     },

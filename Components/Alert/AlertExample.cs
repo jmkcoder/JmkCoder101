@@ -1,4 +1,5 @@
-﻿using Components.Component.ViewModels;
+﻿using Components.Common;
+using Components.Component.ViewModels;
 
 namespace Components.Alert
 {
@@ -16,32 +17,32 @@ namespace Components.Alert
                 {
                     new AlertViewModel
                     {
-                        AlertType = AlertEnum.Info,
+                        Color = ColorEnum.Info,
                         Text = "This is an info alert — check it out!",
                     },
                     new AlertViewModel
                     {
-                        AlertType = AlertEnum.Success,
+                        Color = ColorEnum.Success,
                         Text = "This is a success alert — check it out!",
                     },
                     new AlertViewModel
                     {
-                        AlertType = AlertEnum.Warning,
+                        Color = ColorEnum.Warning,
                         Text = "This is a warning alert — check it out!",
                     },
                     new AlertViewModel
                     {
-                        AlertType = AlertEnum.Danger,
+                        Color = ColorEnum.Danger,
                         Text = "This is a danger alert — check it out!",
                     },
                     new AlertViewModel
                     {
-                        AlertType = AlertEnum.Light,
+                        Color = ColorEnum.Light,
                         Text = "This is a light alert — check it out!",
                     },
                     new AlertViewModel
                     {
-                        AlertType = AlertEnum.Dark,
+                        Color = ColorEnum.Dark,
                         Text = "This is a dark alert — check it out!",
                     },
                 }

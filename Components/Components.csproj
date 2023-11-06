@@ -15,18 +15,23 @@
 
   <ItemGroup>
     <Content Remove="Alert\Views\web.config" />
+    <Content Remove="Badge\Views\web.config" />
     <Content Remove="Callout\Views\web.config" />
     <Content Remove="Component\Views\web.config" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Alert\Views\web.config" />
+    <None Include="Badge\Views\web.config" />
     <None Include="Callout\Views\web.config" />
     <None Include="Component\Views\web.config" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Alert\AlertViewModel.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="Badge\BadgeViewModel.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Update="Callout\CalloutViewModel.cs">

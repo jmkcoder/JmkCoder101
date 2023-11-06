@@ -17,9 +17,12 @@
             {
                 @await Html.PartialAsync(Model.ViewPath, component)
 
-                if (index < Model.Components.Count - 1)
+                if (index < Model.Components.Count - 1 && 
+                    (Model.WithSpace || Model.SpaceIndex.Contains(index)))
                 {
+                    <div></div>
                     <br class="my-5" />
+                    <div></div>
                 }
             }
         }

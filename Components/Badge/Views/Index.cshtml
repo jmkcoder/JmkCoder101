@@ -1,0 +1,9 @@
+﻿@using Components.Badge;
+@model BadgeViewModel
+
+@{
+    var color = @Model.Color.ToString().ToLower();
+    var pill = @Model.IsPill ? "rounded-pill" : string.Empty;
+}
+
+<span class="badge @pill text-bg-@color">@Model.Text</span>

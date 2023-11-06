@@ -2,9 +2,9 @@
 @model AlertViewModel
 
 @{
-    var alertType = @Model.AlertType.ToString().ToLower();
+    var color = @Model.Color.ToString().ToLower();
 }
 
-<div class="alert alert-@alertType mb-0" role="alert">
+<div class="alert alert-@color mb-0" role="alert">
     @Model.Text
 </div>
