@@ -17,11 +17,4 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Publish
-        run: dotnet publish ~/JmkCoder101/JmkCoder101/JmkCoder101.csproj --configuration Release -p:PublishProfile="jmkcoder101-001-site1 - Web Deploy" /p:Password=$DEPLOY_PASSWD
-      - name: Deploy
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: JmkCoder101
-          slot-name: <your-slot-name>
-          publish-profile: ${{ secrets.PUBLISH_PROFILE }}
-          package: ./publish
+        run: dotnet publish ~/JmkCoder101.csproj --configuration Release -p:PublishProfile="jmkcoder101-001-site1 - Web Deploy" /p:Password=$DEPLOY_PASSWD
