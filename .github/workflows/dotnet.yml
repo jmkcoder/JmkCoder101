@@ -22,5 +22,7 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Publish
+    - name: Setup MS Deploy
+      uses: microsoft/webdeploy@v0.1.0
+    - name: publish
       run: dotnet publish "./JmkCoder101/JmkCoder101.csproj" -c Release /p:PublishProfile="jmkcoder101-001-site1 - Web Deploy" /p:password=$DEPLOY_PASSWD
