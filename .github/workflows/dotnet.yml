@@ -27,4 +27,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish -c Release -o Publish --no-build -p "JmkCoder101/JmkCoder101.cs" /p:PublishProfile="jmkcoder101-001-site1 - Web Deploy.pubxml" /p:password=$DEPLOY_PASSWD"
+      run: dotnet publish -c Release -o Publish --no-build -p JmkCoder101/JmkCoder101.cs /p:PublishProfile="jmkcoder101-001-site1 - Web Deploy.pubxml" /p:password=$DEPLOY_PASSWD"
