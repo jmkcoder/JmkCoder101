@@ -13,11 +13,9 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x'
+          dotnet-version: '6.x.x'
       - name: Restore dependencies
         run: dotnet restore
-      - name: Build
-        run: dotnet build --configuration Release
       - name: Publish
         run: dotnet publish ~/JmkCoder101/JmkCoder101.csproj --configuration Release -p:PublishProfile="jmkcoder101-001-site1 - Web Deploy" /p:Password=$DEPLOY_PASSWD
       - name: Deploy
