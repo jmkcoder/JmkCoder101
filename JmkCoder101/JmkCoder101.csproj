@@ -7,16 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Components\Alert\Views\web.config" />
-    <Content Remove="Components\Callout\Views\web.config" />
-    <Content Remove="Component\Views\web.config" />
+    <Compile Remove="Components\**" />
+    <Compile Remove="Component\**" />
+    <Content Remove="Components\**" />
+    <Content Remove="Component\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Component\**" />
+    <None Remove="Components\**" />
+    <None Remove="Component\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Navigation\Views\web.config" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Components\Alert\Views\web.config" />
-    <None Include="Components\Callout\Views\web.config" />
-    <None Include="Component\Views\web.config" />
     <None Include="Navigation\Views\web.config" />
   </ItemGroup>
 
@@ -26,12 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Components\Alert\AlertViewModel.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Update="Components\Callout\CalloutViewModel.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+    <ProjectReference Include="..\Components\Components.csproj" />
   </ItemGroup>
 
 </Project>
