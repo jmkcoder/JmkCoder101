@@ -1,0 +1,11 @@
+﻿@using JmkCoder101.Navigation.ViewModels;
+@model List<NavbarItem>
+
+@foreach (var item in Model)
+{
+    <li class="d-flex list-group-item py-1">
+        <a href="@item.Url" class="list-group-item-action py-2 ripple ps-3">
+            <i class="fa-regular fa-bookmark fa-fw me-3"></i><span>@item.Text</span>
+        </a>
+    </li>
+}

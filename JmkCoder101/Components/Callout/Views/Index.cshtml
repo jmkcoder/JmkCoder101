@@ -1,0 +1,11 @@
+﻿@using JmkCoder101.Components.Callout;
+@model CalloutViewModel
+
+@{
+    var calloutType = @Model.CalloutType.ToString().ToLower();
+}
+
+<div class="callout callout-@calloutType">
+    <h4>@Model.Title</h4>
+    <p>@Model.Message</p>
+</div>
