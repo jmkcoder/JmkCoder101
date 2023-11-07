@@ -3,8 +3,13 @@
 
 @{
     var color = @Model.Color.ToString().ToLower();
+    var dismissable = @Model.IsDismissible ? "alert-dismissible show" : "";
 }
 
-<div class="alert alert-@color mb-0" role="alert">
+<div class="alert alert-@color mb-0 @dismissable" role="alert">
     @Model.Text
+    @if (Model.IsDismissible)
+    {
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    }
 </div>

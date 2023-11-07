@@ -17,33 +17,51 @@ namespace Components.Alert
                 {
                     new AlertViewModel
                     {
+                        Color = ColorEnum.Primary,
+                        Text = "This is a primary alert — check it out!",
+                        IsDismissible = true,
+                    },
+                    new AlertViewModel
+                    {
+                        Color = ColorEnum.Secondary,
+                        Text = "This is an secondary alert — check it out!",
+                        IsDismissible = true,
+                    },
+                    new AlertViewModel
+                    {
                         Color = ColorEnum.Info,
                         Text = "This is an info alert — check it out!",
+                        IsDismissible = true,
                     },
                     new AlertViewModel
                     {
                         Color = ColorEnum.Success,
                         Text = "This is a success alert — check it out!",
+                        IsDismissible = true,
                     },
                     new AlertViewModel
                     {
                         Color = ColorEnum.Warning,
                         Text = "This is a warning alert — check it out!",
+                        IsDismissible = true,
                     },
                     new AlertViewModel
                     {
                         Color = ColorEnum.Danger,
                         Text = "This is a danger alert — check it out!",
+                        IsDismissible = true,
                     },
                     new AlertViewModel
                     {
                         Color = ColorEnum.Light,
                         Text = "This is a light alert — check it out!",
+                        IsDismissible = true,
                     },
                     new AlertViewModel
                     {
                         Color = ColorEnum.Dark,
                         Text = "This is a dark alert — check it out!",
+                        IsDismissible = true,
                     },
                 }
             };
