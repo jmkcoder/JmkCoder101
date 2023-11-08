@@ -1,0 +1,127 @@
+﻿@using Components.Component.ViewModels;
+@model ExampleViewModel
+
+<form action="@Url.ActionLink("Demo", Model?.Components?[0].GetType().Name.Replace("ViewModel", string.Empty))" method="post" id="DemoForm">
+    <h3 class="d-inline me-2">Demo</h3>
+    <button type="submit" class="btn btn-success" style="margin-top: -10px;">
+        <i class="fas fa-play"></i>
+    </button>
+
+    <br />
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Property</th>
+                <th scope="col">Type</th>
+                <th scope="col">Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model?.ModelLines is not null)
+            {
+                foreach (var line in Model.ModelLines)
+                {
+                    var lineParts = line.Trim().Split(" ");
+
+                    if (lineParts.Length < 3 || !line.Contains("get;"))
+                        continue;
+
+                    var type = lineParts[1];
+                    var property = lineParts[2];
+
+                    <tr>
+                        <td><b>@property</b></td>
+                        <td><i>@type</i></td>
+                        <td>
+                            @{
+                                var propertyType = Model?.Components?[0].GetType().GetProperties().First(x => x.Name == property).PropertyType;
+                            }
+
+                            @if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(string) || propertyType == typeof(string))
+                            {
+                                <input name="@property" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Text">
+                            }
+                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(int) || propertyType == typeof(int))
+                            {
+                                <input name="@property" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Number">
+                            }
+                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(decimal) || propertyType == typeof(decimal))
+                            {
+                                <input name="@property" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Decimal">
+                            }
+                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(DateTime) || propertyType == typeof(DateTime))
+                            {
+                                <input name="@property" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Date">
+                            }
+                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(DateTimeOffset) || propertyType == typeof(DateTimeOffset))
+                            {
+                                <input name="@property" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Date">
+                            }
+                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(TimeSpan) || propertyType == typeof(TimeSpan))
+                            {
+                                <input name="@property" type="time" class="form-control" id="exampleFormControlInput1" placeholder="Time">
+                            }
+                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(Guid) || propertyType == typeof(Guid))
+                            {
+                                <input name="@property" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Guid">
+                            }
+                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(byte) || propertyType == typeof(byte))
+                            {
+                                <input name="@property" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Byte">
+                            }
+                            else if (propertyType == typeof(bool))
+                            {
+                                <div class="form-check">
+                                    <input name="@property" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    </label>
+                                </div>
+                            }
+                            else if (propertyType != null && propertyType.IsEnum)
+                            {
+                                <select name="@property" class="form-select" aria-label="Default select example">
+                                    @{
+                                        var values = Enum.GetValues(propertyType);
+                                    }
+
+                                    @for(var i = 0; i < values.Length; i++)
+                                    {
+                                        <option value="@i">@values.GetValue(i)</option>
+                                    }
+                                </select>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <input name="ViewPath" type="hidden" class="form-control" id="exampleFormControlInput1" value="@Model?.ViewPath">
+</form>
+
+<div id="Demo-Placeholder" class="container">
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("DemoForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", document.getElementById("DemoForm").action);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        let doc = new DOMParser().parseFromString(xhr.responseText, "text/html");
+                        document.getElementById("Demo-Placeholder").innerHTML = doc.documentElement.innerHTML;
+                    }
+                }
+            };
+            var formData = new FormData(document.getElementById("DemoForm"));
+            console.log(formData);
+            xhr.send(formData);
+        });
+    });
+</script>
