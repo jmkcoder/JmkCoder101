@@ -101,14 +101,31 @@
     <input name="ViewPath" type="hidden" class="form-control" id="exampleFormControlInput1" value="@Model?.ViewPath">
 </form>
 
-<div id="Demo-Placeholder" class="container">
+<br />
+<br />
 
+<div class="bd-example-snippet bd-code-snippet">
+    <div id="Demo-Placeholder"  class="bd-example m-0 border-0">
+        
+    </div>
+    <div class="bd-example d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
+        <small class="font-monospace text-body-secondary text-uppercase">HTML</small>
+        <div class="d-flex ms-auto">
+            <button type="button" class="btn btn-light mt-0 me-0" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard">
+                <i class="fa-regular fa-copy"></i>
+            </button>
+        </div>
+    </div>
+    <pre class="bd-example border-0 p-3 m-0">
+<code id="Demo-Code-Placeholder" class="language-html"></code>
+    </pre>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("DemoForm").addEventListener("submit", function (e) {
             e.preventDefault();
+
             var xhr = new XMLHttpRequest();
             xhr.open("POST", document.getElementById("DemoForm").action);
             xhr.onreadystatechange = function () {
@@ -116,11 +133,15 @@
                     if (xhr.status === 200) {
                         let doc = new DOMParser().parseFromString(xhr.responseText, "text/html");
                         document.getElementById("Demo-Placeholder").innerHTML = doc.documentElement.innerHTML;
+                        
+                        let elem = document.getElementById("Demo-Code-Placeholder");
+                        let highlightedCode = Prism.highlight(xhr.responseText.trim(), Prism.languages["html"], "html");
+                        elem.innerHTML = highlightedCode;
+
                     }
                 }
             };
             var formData = new FormData(document.getElementById("DemoForm"));
-            console.log(formData);
             xhr.send(formData);
         });
     });
