@@ -5,7 +5,7 @@ namespace Components.Component.ViewModels
 {
     public abstract class ComponentViewModel : IComponentViewModel
     {
-        public string? HtmlCode { get; set; }
+        public string? Id { get; set; }
 
         public abstract ExampleViewModel Example();
 

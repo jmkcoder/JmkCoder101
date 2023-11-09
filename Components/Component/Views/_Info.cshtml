@@ -1,4 +1,5 @@
-﻿@using Components.Component.ViewModels;
+﻿@using Components.Component.Extensions;
+@using Components.Component.ViewModels;
 @model ExampleViewModel
 
 <form action="@Url.ActionLink("Demo", Model?.Components?[0].GetType().Name.Replace("ViewModel", string.Empty))" method="post" id="DemoForm">
@@ -18,74 +19,66 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model?.ModelLines is not null)
+            @{
+                var properties = Html.GetSourceCode(Model?.Components?[0].GetType());
+            }
+
+            @if (properties is not null)
             {
-                foreach (var line in Model.ModelLines)
+                foreach (var property in properties)
                 {
-                    var lineParts = line.Trim().Split(" ");
-
-                    if (lineParts.Length < 3 || !line.Contains("get;"))
-                        continue;
-
-                    var type = lineParts[1];
-                    var property = lineParts[2];
-
                     <tr>
-                        <td><b>@property</b></td>
-                        <td><i>@type</i></td>
+                        <td><b>@property.Name</b></td>
+                        <td><i>@property.PropertyType.Name</i></td>
                         <td>
-                            @{
-                                var propertyType = Model?.Components?[0].GetType().GetProperties().First(x => x.Name == property).PropertyType;
-                            }
-
-                            @if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(string) || propertyType == typeof(string))
+                            @if (Html.IsType(property.PropertyType, typeof(string)))
                             {
-                                <input name="@property" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Text">
+                                <input name="@property.Name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Text">
                             }
-                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(int) || propertyType == typeof(int))
+                            else if (Html.IsType(property.PropertyType, typeof(int)))
                             {
-                                <input name="@property" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Number">
+                                <input name="@property.Name" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Number">
                             }
-                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(decimal) || propertyType == typeof(decimal))
+                            else if (Html.IsType(property.PropertyType, typeof(decimal)))
                             {
-                                <input name="@property" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Decimal">
+                                <input name="@property.Name" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Decimal">
                             }
-                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(DateTime) || propertyType == typeof(DateTime))
+                            else if (Html.IsType(property.PropertyType, typeof(DateTime)))
                             {
-                                <input name="@property" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Date">
+                                <input name="@property.Name" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Date">
                             }
-                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(DateTimeOffset) || propertyType == typeof(DateTimeOffset))
+                            else if (Html.IsType(property.PropertyType, typeof(DateTimeOffset)))
                             {
-                                <input name="@property" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Date">
+                                <input name="@property.Name" type="date" class="form-control" id="exampleFormControlInput1" placeholder="Date">
                             }
-                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(TimeSpan) || propertyType == typeof(TimeSpan))
+                            else if (Html.IsType(property.PropertyType, typeof(TimeSpan)))
                             {
-                                <input name="@property" type="time" class="form-control" id="exampleFormControlInput1" placeholder="Time">
+                                <input name="@property.Name" type="time" class="form-control" id="exampleFormControlInput1" placeholder="Time">
                             }
-                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(Guid) || propertyType == typeof(Guid))
+                            else if (Html.IsType(property.PropertyType, typeof(Guid)))
                             {
-                                <input name="@property" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Guid">
+                                <input name="@property.Name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Guid">
                             }
-                            else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(byte) || propertyType == typeof(byte))
+                            else if (Html.IsType(property.PropertyType, typeof(byte)))
                             {
-                                <input name="@property" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Byte">
+                                <input name="@property.Name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Byte">
                             }
-                            else if (propertyType == typeof(bool))
+                            else if (Html.IsType(property.PropertyType, typeof(bool)))
                             {
                                 <div class="form-check">
-                                    <input name="@property" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+                                    <input name="@property.Name" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault">
                                     </label>
                                 </div>
                             }
-                            else if (propertyType != null && propertyType.IsEnum)
+                            else if (property.PropertyType != null && property.PropertyType.IsEnum)
                             {
                                 <select name="@property" class="form-select" aria-label="Default select example">
                                     @{
-                                        var values = Enum.GetValues(propertyType);
+                                        var values = Enum.GetValues(property.PropertyType);
                                     }
 
-                                    @for(var i = 0; i < values.Length; i++)
+                                    @for (var i = 0; i < values.Length; i++)
                                     {
                                         <option value="@i">@values.GetValue(i)</option>
                                     }

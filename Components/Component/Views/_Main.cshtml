@@ -1,4 +1,6 @@
-﻿@using Components.Component.ViewModels;
+﻿@using System.Reflection;
+@using Components.Component.Extensions;
+@using Components.Component.ViewModels;
 @model ExampleViewModel
 
 <h1 class="mb-2">@Model.Title</h1>
@@ -13,8 +15,8 @@
             {
                 @await Html.PartialAsync(Model.ViewPath, component)
 
-                if (index < Model.Components.Count - 1 && 
-                    (Model.WithSpace || Model.SpaceIndex.Contains(index)))
+                if (index < Model.Components.Count - 1 &&
+                (Model.WithSpace || Model.SpaceIndex.Contains(index)))
                 {
                     <div></div>
                     <br class="my-5" />
@@ -52,13 +54,21 @@
     </div>
     <pre class="language-razor border-0 p-3 m-0 line-numbers">
     <code class="language-csharp">
-            @if (Model?.ModelLines is not null)
+public class @Model?.Components?[0].GetType().Name
+{
+    @{
+        var properties = Html.GetSourceCode(Model?.Components?[0].GetType());
+
+        if (properties is not null)
+        {
+            foreach (var property in properties)
             {
-                foreach (var line in Model.ModelLines)
-                {
-                    @line.Replace("partial ", string.Empty) <br />
-                }
+    <span>public </span>@property.PropertyType.Name<span> </span>@property.Name<span> { get; set; }</span>
             }
+                
+        }
+    }
+}
     </code>
     </pre>
 </div>
