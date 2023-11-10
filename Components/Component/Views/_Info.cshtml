@@ -73,7 +73,7 @@
                             }
                             else if (property.PropertyType != null && property.PropertyType.IsEnum)
                             {
-                                <select name="@property" class="form-select" aria-label="Default select example">
+                                <select name="@property.Name" class="form-select" aria-label="Default select example">
                                     @{
                                         var values = Enum.GetValues(property.PropertyType);
                                     }
