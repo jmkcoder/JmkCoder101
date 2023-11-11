@@ -17,8 +17,8 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build
+        run: dotnet build $(SolutionDir)/JmkCoder101/JmkCoder101.csproj
       - name: Publish
         env:
           DEPLOY_PASSWD: ${{ secrets.DEPLOY_PASSWD }}
-        run: dotnet publish /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
+        run: echo $DEPLOY_PASSWD dotnet publish $(SolutionDir)/JmkCoder101/JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
