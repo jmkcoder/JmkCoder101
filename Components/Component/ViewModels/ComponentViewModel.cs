@@ -7,6 +7,8 @@ namespace Components.Component.ViewModels
     {
         public string? Id { get; set; }
 
+        public string? Classes { get; set; }
+
         protected abstract string? Description { get; }
 
         protected virtual bool WithSpace { get; } = true;

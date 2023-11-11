@@ -64,7 +64,7 @@ namespace Components.Component
                 }
                 else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(string) || propertyType == typeof(string))
                 {
-                    dictionary[item.Key] = string.IsNullOrEmpty(item.Value) ? " " : item.Value;
+                    dictionary[item.Key] = item.Value;
                 }
             }
 

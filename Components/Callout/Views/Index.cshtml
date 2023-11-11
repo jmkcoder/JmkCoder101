@@ -3,9 +3,11 @@
 
 @{
     var color = @Model.Color.ToString().ToLower();
+    var id = !string.IsNullOrEmpty(Model.Id) && Model.Id.Trim() != string.Empty ? $"id={Model.Id.Trim()}" : string.Empty;
+    var classes = !string.IsNullOrEmpty(Model.Classes) ? $" {Model.Classes.Trim()}" : string.Empty;
 }
 
 <div class="callout callout-@color">
-    <h4>@Model.Title</h4>
-    <p>@Model.Message</p>
+    <h4>@(!string.IsNullOrEmpty(Model.Title) && Model.Title.Trim() != string.Empty ? Model.Title : Html.Raw("&nbsp"))</h4>
+    <p>@(!string.IsNullOrEmpty(Model.Message) && Model.Message.Trim() != string.Empty ? Model.Message : Html.Raw("&nbsp"))</p>
 </div>

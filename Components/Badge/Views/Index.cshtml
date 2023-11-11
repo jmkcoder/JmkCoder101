@@ -3,7 +3,9 @@
 
 @{
     var color = @Model.Color.ToString().ToLower();
-    var pill = @Model.IsPill ? "rounded-pill" : string.Empty;
+    var id = !string.IsNullOrEmpty(Model.Id) && Model.Id.Trim() != string.Empty ? $"id={Model.Id.Trim()}" : string.Empty;
+    var classes = !string.IsNullOrEmpty(Model.Classes) ? $" {Model.Classes.Trim()}" : string.Empty;
+    var pill = @Model.IsPill ? " rounded-pill" : string.Empty;
 }
 
-<span class="badge @pill text-bg-@color">@Model.Text</span>
+<span @id class="badge text-bg-@color@(pill)@(classes)">@(!string.IsNullOrEmpty(Model.Text) && Model.Text.Trim() != string.Empty ? Model.Text : Html.Raw("&nbsp;"))</span>

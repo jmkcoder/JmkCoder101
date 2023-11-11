@@ -3,13 +3,15 @@
 
 @{
     var color = @Model.Color.ToString().ToLower();
-    var dismissable = @Model.IsDismissible ? "alert-dismissible show" : "";
+    var id = !string.IsNullOrEmpty(Model.Id) && Model.Id.Trim() != string.Empty ? $"id={Model.Id.Trim()}" : string.Empty;
+    var dismissable = @Model.IsDismissible ? " alert-dismissible show" : string.Empty;
+    var classes = !string.IsNullOrEmpty(Model.Classes) ? $" {Model.Classes.Trim()}" : string.Empty;
 }
 
-<div class="alert alert-@color mb-0 @dismissable" role="alert">
-    @Model.Text
+<div @id class="alert alert-@color mb-0@(dismissable)@(classes)" role="alert">
+    @(!string.IsNullOrEmpty(Model.Text) && Model.Text.Trim() != string.Empty ? Model.Text : Html.Raw("&nbsp;"))
     @if (Model.IsDismissible)
     {
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     }
 </div>
