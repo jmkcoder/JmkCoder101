@@ -21,6 +21,4 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build
-      - name: Publish
-        run: echo $DEPLOY_PASSWD 
  # dotnet publish -c Release -o Publish /p:PublishProfile=WebDeploy /p:UserName=jmkcoder101-001 /p:Password=$DEPLOY_PASSWD
