@@ -5,9 +5,12 @@ on:
     branches:
       - master
 
+env:
+  DEPLOY_PASSWD: ${{ secrets.DEPLOY_PASSWD }}
+
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
@@ -19,6 +22,4 @@ jobs:
       - name: Build
         run: dotnet build
       - name: Publish
-        env:
-          DEPLOY_PASSWD: ${{ secrets.DEPLOY_PASSWD }}
-        run: dotnet publish /p:PublishProfile=WebDeploy /p:Password=${{ secrets.DEPLOY_PASSWD }}
+        run: dotnet publish /p:Password=$(DEPLOY_PASSWD)
