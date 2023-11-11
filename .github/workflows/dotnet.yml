@@ -19,4 +19,6 @@ jobs:
       - name: Build
         run: dotnet build
       - name: Publish
-        run: dotnet publish JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$(DEPLOY_PASSWD)
+        env:
+          DEPLOY_PASSWD: ${{ secrets.DEPLOY_PASSWD }}
+        run: dotnet publish JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
