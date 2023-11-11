@@ -7,16 +7,14 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup .NET Core
+      - name: Setup .NET
         uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.x.x'
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build /home/runner/work/JmkCoder101/JmkCoder101/JmkCoder101/JmkCoder101.csproj
+        run: dotnet build /JmkCoder101/JmkCoder101/JmkCoder101.csproj
       - name: Publish
-        run: dotnet publish /home/runner/work/JmkCoder101/JmkCoder101/JmkCoder101/JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
+        run: dotnet publish /JmkCoder101/JmkCoder101/JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
