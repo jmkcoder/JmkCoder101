@@ -19,4 +19,4 @@ jobs:
       - name: Build
         run: dotnet build
       - name: Publish
-        run: dotnet publish /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
+        run: dotnet publish JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$(DEPLOY_PASSWD)
