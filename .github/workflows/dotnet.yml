@@ -21,4 +21,4 @@ jobs:
       - name: Publish
         env:
           DEPLOY_PASSWD: ${{ secrets.DEPLOY_PASSWD }}
-        run: dotnet publish /p:PublishProfile=WebDeploy /p:Password="${{ secrets.DEPLOY_PASSWD }}"
+        run: dotnet publish /p:PublishProfile=WebDeploy /p:Password=${{ secrets.DEPLOY_PASSWD }}
