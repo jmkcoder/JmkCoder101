@@ -8,9 +8,6 @@
     var classes = !string.IsNullOrEmpty(Model.Classes) ? $" {Model.Classes.Trim()}" : string.Empty;
 }
 
-<h1>
-    Hello World
-</h1>
 <div @id class="alert alert-@color mb-0@(dismissable)@(classes)" role="alert">
     @(!string.IsNullOrEmpty(Model.Text) && Model.Text.Trim() != string.Empty ? Model.Text : Html.Raw("&nbsp;"))
     @if (Model.IsDismissible)
