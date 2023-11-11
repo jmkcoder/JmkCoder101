@@ -7,19 +7,35 @@ namespace Components.Component.ViewModels
     {
         public string? Id { get; set; }
 
-        public abstract ExampleViewModel Example();
+        protected abstract string? Description { get; }
 
-        protected string[] GetSourceCode()
+        protected virtual bool WithSpace { get; } = true;
+
+        protected virtual List<int> SpaceIndex { get; } = new List<int>();
+
+        protected abstract List<ComponentViewModel> Samples();
+
+        public ExampleViewModel Example()
         {
-            var viewModelPath = $"{GetType().Namespace?.Replace($"{Assembly.GetAssembly(GetType())?.GetName().Name}.", string.Empty).Replace(".", "/")}/{GetType().Name}.cs";
-            var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly()?.Location) ?? string.Empty, viewModelPath);
-
-            return File.ReadAllLines(path);
+            return new ExampleViewModel()
+            {
+                Title = GetComponentName(),
+                Description = "Provide contextual feedback messages for typical user actions with the handful of available and flexible callout messages.",
+                ViewPath = GetViewPath(),
+                WithSpace = WithSpace,
+                SpaceIndex = SpaceIndex,
+                Components = Samples()
+            };
         }
 
         protected string GetViewPath()
         {
             return $"~/{GetType().Namespace?.Replace($"{Assembly.GetAssembly(GetType())?.GetName().Name}.", string.Empty).Replace(".", "/")}/Views/Index.cshtml";
+        }
+
+        protected string GetComponentName()
+        {
+            return GetType().Name.Replace("ViewModel", string.Empty);
         }
     }
 }

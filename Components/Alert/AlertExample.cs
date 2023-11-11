@@ -5,15 +5,11 @@ namespace Components.Alert
 {
     public partial class AlertViewModel
     {
-        public override ExampleViewModel Example()
+        protected override string? Description => "Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.";
+
+        protected override List<ComponentViewModel> Samples()
         {
-            return new ExampleViewModel()
-            {
-                Title = "Alert",
-                Description = "Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.",
-                ViewPath = GetViewPath(),
-                ModelLines = GetSourceCode(),
-                Components = new List<ComponentViewModel>
+            return new List<ComponentViewModel>
                 {
                     new AlertViewModel
                     {
@@ -63,8 +59,7 @@ namespace Components.Alert
                         Text = "This is a dark alert — check it out!",
                         IsDismissible = true,
                     },
-                }
-            };
+                };
         }
     }
 }

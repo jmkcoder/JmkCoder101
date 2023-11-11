@@ -1,21 +1,18 @@
-﻿using Components.Common;
+﻿using Components.Callout;
+using Components.Common;
 using Components.Component.ViewModels;
 
 namespace Components.Badge
 {
     public partial class BadgeViewModel
     {
-        public override ExampleViewModel Example()
+        protected override string? Description => "Documentation and examples for badges, our small count and labeling component.";
+        protected override bool WithSpace => false;
+        protected override List<int> SpaceIndex => new() { 7 };
+
+        protected override List<ComponentViewModel> Samples()
         {
-            return new ExampleViewModel()
-            {
-                Title = "Badge",
-                Description = "Documentation and examples for badges, our small count and labeling component.",
-                ViewPath = GetViewPath(),
-                ModelLines = GetSourceCode(),
-                WithSpace = false,
-                SpaceIndex = new List<int> { 7 },
-                Components = new List<ComponentViewModel>
+            return new List<ComponentViewModel>
                 {
                     new BadgeViewModel
                     {
@@ -105,8 +102,7 @@ namespace Components.Badge
                         Text = "Dark",
                         IsPill = true,
                     },
-                }
-            };
+                };
         }
     }
 }

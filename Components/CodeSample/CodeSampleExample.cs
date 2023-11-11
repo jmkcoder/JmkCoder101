@@ -4,7 +4,9 @@ namespace Components.CodeSample
 {
     public partial class CodeSampleViewModel
     {
-        public override ExampleViewModel Example()
+        protected override string? Description => throw new NotImplementedException();
+
+        protected override List<ComponentViewModel> Samples()
         {
             throw new NotImplementedException();
         }
