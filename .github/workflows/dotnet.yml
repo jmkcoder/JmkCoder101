@@ -22,4 +22,6 @@ jobs:
       - name: Build
         run: dotnet build
       - name: Publish
-        run: echo $DEPLOY_PASSWD # dotnet publish -c Release -o Publish /p:PublishProfile=WebDeploy /p:UserName=jmkcoder101-001 /p:Password=$DEPLOY_PASSWD
+        env:
+          DEPLOY_PASSWD: ${{ secrets.DEPLOY_PASSWD }}
+        run: echo ${{ secrets.DEPLOY_PASSWD }} # dotnet publish -c Release -o Publish /p:PublishProfile=WebDeploy /p:UserName=jmkcoder101-001 /p:Password=${{ secrets.DEPLOY_PASSWD }}
