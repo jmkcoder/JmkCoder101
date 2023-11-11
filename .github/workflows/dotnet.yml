@@ -14,7 +14,5 @@ jobs:
         uses: actions/setup-dotnet@v1
       - name: Restore dependencies
         run: dotnet restore
-      - name: Build
-        run: dotnet build /JmkCoder101/JmkCoder101/JmkCoder101.csproj
       - name: Publish
-        run: dotnet publish /JmkCoder101/JmkCoder101/JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
+        run: dotnet publish D:\a\JmkCoder101\JmkCoder101\JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
