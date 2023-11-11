@@ -12,7 +12,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.x.x'
       - name: Restore dependencies
         run: dotnet restore
       - name: Publish
-        run: dotnet publish D:\a\JmkCoder101\JmkCoder101\JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
+        run: dotnet publish \JmkCoder101\JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=$DEPLOY_PASSWD
