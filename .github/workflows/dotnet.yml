@@ -18,3 +18,5 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build /home/runner/work/JmkCoder101/JmkCoder101/JmkCoder101/JmkCoder101.csproj
+      - name: Publish
+        run: dotnet publish JmkCoder101.csproj /p:PublishProfile=WebDeploy /p:Password=<DeploymentPassword>
