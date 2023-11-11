@@ -30,7 +30,7 @@
                 {
                     <tr>
                         <td><b>@property.Name</b></td>
-                        <td><i>@property.PropertyType.Name</i></td>
+                        <td><i>@property.PropertyType?.Name</i></td>
                         <td>
                             @if (Html.IsType(property.PropertyType, typeof(string)))
                             {
