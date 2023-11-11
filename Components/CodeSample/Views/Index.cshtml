@@ -1,0 +1,29 @@
+﻿@using Components.CodeSample;
+@model CodeSampleViewModel
+
+<h4>Code Snippet</h4>
+
+<br />
+
+<div class="bd-example-snippet bd-code-snippet">
+    <div id="Demo-Placeholder" class="bd-example m-0 border-0">
+        @Html.Raw(Model.Component)
+    </div>
+    <div class="bd-example d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
+        <small class="font-monospace text-body-secondary text-uppercase">@Model.Language</small>
+        <div class="d-flex ms-auto">
+            <button type="button" class="btn btn-light mt-0 me-0" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard">
+                <i class="fa-regular fa-copy"></i>
+            </button>
+        </div>
+    </div>
+    <pre class="bd-example border-0 p-3 m-0">
+<code id="Demo-Code-Placeholder" class="language-@Model.Language">@Model.Code</code>
+    </pre>
+</div>
+
+<script>
+    let elem = document.getElementById("Demo-Code-Placeholder");
+    let highlightedCode = Prism.highlight(xhr.responseText.trim(), Prism.languages["@Model.Language"], "@Model.Language");
+    elem.innerHTML = highlightedCode;
+</script>

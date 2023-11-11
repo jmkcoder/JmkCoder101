@@ -17,6 +17,7 @@
     <Content Remove="Alert\Views\web.config" />
     <Content Remove="Badge\Views\web.config" />
     <Content Remove="Callout\Views\web.config" />
+    <Content Remove="CodeSample\Views\web.config" />
     <Content Remove="Component\Views\web.config" />
   </ItemGroup>
 
@@ -24,6 +25,7 @@
     <None Include="Alert\Views\web.config" />
     <None Include="Badge\Views\web.config" />
     <None Include="Callout\Views\web.config" />
+    <None Include="CodeSample\Views\web.config" />
     <None Include="Component\Views\web.config" />
   </ItemGroup>
 
