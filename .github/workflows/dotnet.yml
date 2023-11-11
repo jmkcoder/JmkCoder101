@@ -5,9 +5,6 @@ on:
     branches:
       - master
 
-env:
-  DEPLOY_PASSWD: ${{ secrets.DEPLOY_PASSWD }}
-
 jobs:
   build-and-deploy:
     runs-on: windows-latest
@@ -22,6 +19,4 @@ jobs:
       - name: Build
         run: dotnet build
       - name: Publish
-        env:
-          DEPLOY_PASSWD: ${{ secrets.DEPLOY_PASSWD }}
         run: dotnet publish -c Release -o Publish /p:PublishProfile=WebDeploy /p:UserName=jmkcoder101-001 /p:Password=${{ secrets.DEPLOY_PASSWD }}
