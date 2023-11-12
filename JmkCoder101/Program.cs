@@ -1,5 +1,4 @@
 using Microsoft.Extensions.FileProviders;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace JmkCoder101
 {
@@ -36,9 +35,16 @@ namespace JmkCoder101
             app.UseRouting();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => {
-                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Alert}/{action=Example}/{id?}");
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller}/{action=Example}/{id?}");
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
+                endpoints.MapGet("/", context =>
+                {
+                    context.Response.Redirect("/GettingStarted");
+                    return Task.CompletedTask;
+                });
             });
 
             app.Run();
