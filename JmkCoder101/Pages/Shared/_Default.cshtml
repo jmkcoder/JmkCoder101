@@ -63,14 +63,14 @@
                 </button>
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="#">
+                @* <a class="navbar-brand" href="#">
                     <img src="~/images/logo.jpg"
                          height="48"
                          alt="JmkCoder101"
                          loading="lazy" />
-                </a>
+                </a> *@
                 <div>
-                    <h5 class="w-auto my-auto m-0 text-uppercase">Nimbus</h5>
+                    <h5 class="w-auto my-auto m-0 text-capitalizefw-bolder">Nimbus</h5>
                     <span class="w-auto my-auto fa-xs fw-bold text-secondary">v1.0.0</span>
                 </div>
                     
@@ -195,12 +195,60 @@
     </header>
     <!--Main Navigation-->
     <!--Main layout-->
-    <main style="margin-top: 58px;">
-        <div class="container pt-4">
+    <main class="d-flex w-auto flex-column" style="margin-top: 58px;">
+        <div class="container pt-4 mb-5">
             @RenderBody()
         </div>
+        <!-- Footer -->
+        <footer class="text-secondary text-center d-flex flex-column flex-fill w-auto">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
+                        <img src="~/images/logo.jpg" style="max-width: 9rem;"/>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-start">
+                        <h6 class="text-capitalized fa-md mb-4 text-dark fw-bold">More from JmkCoder 101</h6>
+
+                        <ul class="list-unstyled mb-0 text-start">
+                            <li class="mb-3">
+                                <a href="#!" class="text-primary text-decoration-none">Home Page</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#!" class="text-primary text-decoration-none">Nimbus</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-start">
+                        <h6 class="text-capitalized fa-md mb-5 text-dark fw-bold">Follow Us</h6>
+
+                        <ul class="list-unstyled mb-0 text-start">
+                            <li class="mb-4">
+                                <a href="https://github.com/jmkcoder/JmkCoder101" target="_blank" class="text-decoration-none" style="color: #b5b5b5">
+                                    <i class="fab fa-github fa-xl" style="font-size: 48px;"></i>
+                                </a>
+                            </li>
+                            <li class="mb-3 fa-xs" style="color: #b5b5b5">
+                                <p>© @DateTime.UtcNow.Year <a href="https://jmkcoder101.com" class="text-primary text-decoration-none">JmkCoder 101</a></p>
+                                <p>Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" class="text-primary text-decoration-none">CC BY 4.0</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+        </footer>
+        <!-- Footer -->
     </main>
     <!--Main layout-->
+    
     <!-- MDB -->
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
