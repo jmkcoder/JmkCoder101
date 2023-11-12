@@ -24,6 +24,7 @@ namespace JmkCoder101
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             // Serve static files from wwwroot of component library
             app.UseStaticFiles(new StaticFileOptions
