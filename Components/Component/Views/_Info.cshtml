@@ -1,12 +1,18 @@
 ﻿@using Components.CodeSample;
+@using Components.Common;
 @using Components.Component.Extensions;
 @using Components.Component.ViewModels;
+@using Components.Icon;
 @model ExampleViewModel
 
 <form action="@Url.ActionLink("Demo", Model?.Components?[0].GetType().Name.Replace("ViewModel", string.Empty))" method="post" id="DemoForm">
     <h3 class="d-inline me-2">Demo</h3>
     <button type="submit" class="btn btn-success" style="margin-top: -10px;">
-        <i class="fas fa-play"></i>
+        @await Html.PartialAsync("~/Icon/Views/Index.cshtml", new IconViewModel() {
+            Icon = "play",
+            Color = ColorEnum.Light,
+            IsSolid = true
+        })
     </button>
 
     <br />
