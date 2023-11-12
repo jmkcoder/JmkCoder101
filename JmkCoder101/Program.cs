@@ -1,3 +1,6 @@
+using Microsoft.Extensions.FileProviders;
+using static System.Net.Mime.MediaTypeNames;
+
 namespace JmkCoder101
 {
     public class Program
@@ -21,7 +24,13 @@ namespace JmkCoder101
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            // Serve static files from wwwroot of component library
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "componentsroot")),
+                RequestPath = "/component"
+            });
 
             app.UseRouting();
             app.UseAuthorization();
