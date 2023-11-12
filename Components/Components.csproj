@@ -42,16 +42,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="componentsroot\css\prism.css">
+    <None Update="Nimbus\css\prism.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="componentsroot\css\site.css">
+    <None Update="Nimbus\css\site.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="componentsroot\js\prism.js">
+    <None Update="Nimbus\js\prism.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="componentsroot\js\site.js">
+    <None Update="Nimbus\js\site.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
