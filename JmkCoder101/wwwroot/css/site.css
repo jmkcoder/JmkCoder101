@@ -96,3 +96,43 @@ body {
     --bd-callout-bg: var(--bs-danger-bg-subtle);
     --bd-callout-border: var(--bs-danger-border-subtle)
 }
+
+i.fas.icon-info,
+i.far.icon-info {
+    color: var(--bs-info);
+}
+
+i.fas.icon-warning,
+i.far.icon-warning {
+    color: var(--bs-warning);
+}
+
+i.fas.icon-danger,
+i.far.icon-danger {
+    color: var(--bs-danger);
+}
+
+i.fas.icon-success,
+i.far.icon-success {
+    color: var(--bs-success);
+}
+
+i.fas.icon-primary,
+i.far.icon-primary {
+    color: var(--bs-primary);
+}
+
+i.fas.icon-secondary,
+i.far.icon-secondary {
+    color: var(--bs-secondary);
+}
+
+i.fas.icon-dark,
+i.far.icon-dark {
+    color: var(--bs-dark);
+}
+
+i.fas.icon-light,
+i.far.icon-light {
+    color: var(--bs-light);
+}

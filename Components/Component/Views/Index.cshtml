@@ -1,4 +1,6 @@
 ﻿@using Components.Component.ViewModels;
+@using Components.Icon;
+@using Components.Common;
 @model ExampleViewModel
 
 @{
@@ -7,10 +9,24 @@
 
 <ul class="nav nav-pills" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="main-tab" data-bs-toggle="tab" data-bs-target="#main-pane" type="button" role="tab" aria-controls="main-pane" aria-selected="true">General</button>
+        <button class="nav-link active" id="main-tab" data-bs-toggle="tab" data-bs-target="#main-pane" type="button" role="tab" aria-controls="main-pane" aria-selected="true">
+            @await Html.PartialAsync("~/Icon/Views/Index.cshtml", new IconViewModel() {
+                Icon = "eye",
+                Color = ColorEnum.Dark,
+                IsSolid = false
+            }) &nbsp;
+            Overview
+        </button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-pane" type="button" role="tab" aria-controls="info-pane" aria-selected="false">Demo</button>
+        <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-pane" type="button" role="tab" aria-controls="info-pane" aria-selected="false">
+            @await Html.PartialAsync("~/Icon/Views/Index.cshtml", new IconViewModel() {
+            Icon = "gear",
+            Color = ColorEnum.Dark,
+            IsSolid = true
+            }) &nbsp;
+            Demo
+        </button>
     </li>
 </ul>
 <div class="tab-content" id="myTabContent">
