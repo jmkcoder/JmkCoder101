@@ -22,7 +22,7 @@ namespace Components.Component.ViewModels
             return new ExampleViewModel()
             {
                 Title = GetComponentName(),
-                Description = "Provide contextual feedback messages for typical user actions with the handful of available and flexible callout messages.",
+                Description = Description,
                 ViewPath = GetViewPath(),
                 WithSpace = WithSpace,
                 SpaceIndex = SpaceIndex,
