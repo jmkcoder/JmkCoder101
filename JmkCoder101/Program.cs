@@ -28,7 +28,7 @@ namespace JmkCoder101
             // Serve static files from wwwroot of component library
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "componentsroot")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Nimbus")),
                 RequestPath = "/component"
             });
 
