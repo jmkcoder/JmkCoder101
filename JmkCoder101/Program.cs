@@ -1,3 +1,4 @@
+using Components.Common;
 using Microsoft.Extensions.FileProviders;
 
 namespace JmkCoder101
@@ -13,6 +14,8 @@ namespace JmkCoder101
             builder.Services.AddRazorPages();
 
             var app = builder.Build();
+
+            _ = new RazorPageRenderer(app.Services);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

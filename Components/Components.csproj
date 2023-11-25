@@ -30,6 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.33.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Alert\AlertViewModel.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -42,6 +46,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Alert\Documentation.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Nimbus\css\prism.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

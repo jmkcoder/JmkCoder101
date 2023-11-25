@@ -13,9 +13,18 @@ namespace Components.Component.ViewModels
 
         protected virtual bool WithSpace { get; } = true;
 
+        protected virtual string? Documentation { get; set; }
+
         protected virtual List<int> SpaceIndex { get; } = new List<int>();
 
         protected abstract List<ComponentViewModel> Samples();
+
+        protected string Namespace { get; set; } = string.Empty;
+
+        public ComponentViewModel()
+        {
+            Namespace = GetType().Namespace?.Replace($"{Assembly.GetAssembly(GetType())?.GetName().Name}.", string.Empty).Replace(".", "/") ?? string.Empty;
+        }
 
         public ExampleViewModel Example()
         {
@@ -26,13 +35,14 @@ namespace Components.Component.ViewModels
                 ViewPath = GetViewPath(),
                 WithSpace = WithSpace,
                 SpaceIndex = SpaceIndex,
-                Components = Samples()
+                Components = Samples(),
+                Documentation = Documentation
             };
         }
 
         protected string GetViewPath()
         {
-            return $"~/{GetType().Namespace?.Replace($"{Assembly.GetAssembly(GetType())?.GetName().Name}.", string.Empty).Replace(".", "/")}/Views/Index.cshtml";
+            return $"~/{Namespace}/Views/Index.cshtml";
         }
 
         protected string GetComponentName()

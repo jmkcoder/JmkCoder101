@@ -1,8 +1,6 @@
 ﻿using Components.Component.Interface;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
 using System.Text.Json;
-using System.Web;
 
 namespace Components.Component
 {

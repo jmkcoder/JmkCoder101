@@ -1,0 +1,40 @@
+﻿.bd-example-snippet .bd-example {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 5px;
+}
+
+.bd-example-snippet .bd-example:nth-child(1) {
+    border-end-start-radius: 0 !important;
+    border-end-end-radius: 0 !important;
+}
+
+.bd-example-snippet .bd-example:last-child {
+    border-start-start-radius: 0 !important;
+    border-start-end-radius: 0 !important;
+    border-top: none !important;
+}
+
+.bd-example-snippet .highlight-toolbar {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border: 1px solid #dee2e6 !important;
+    background-color: #fff !important;
+    border-radius: 0;
+    border-top: none !important;
+}
+
+.bd-example-snippet-model {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 5px;
+}
+
+.bd-example-snippet-model .bd-example {
+    border-top: none !important;
+}

@@ -8,5 +8,6 @@
         public List<ComponentViewModel>? Components { get; set; }
         public bool WithSpace { get; set; } = true;
         public List<int> SpaceIndex { get; set; } = new List<int>();
+        public string? Documentation { get; set; }
     }
 }
