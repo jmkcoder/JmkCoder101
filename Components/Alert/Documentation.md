@@ -22,3 +22,17 @@ Alerts are available for any length of text, as well as an optional close button
 {{Alert Text="A simple light alert - check it out!" Color="Light"}}
 <br />
 {{Alert Text="A simple dark alert - check it out!" Color="Dark"}}
+
+<br />
+<br />
+
+### Dismissing
+
+Using the alert JavaScript plugin, it's possible to dismiss any alert inline. Here's how:
+
+* Be sure you've loaded the alert plugin, or the compiled Bootstrap JavaScript.
+
+You can see this in action with a live demo:
+<br />
+
+{{Alert Text="A simple danger alert - check it out!" Color="Warning" IsDismissible="true"}}
