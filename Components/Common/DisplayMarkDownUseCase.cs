@@ -89,9 +89,7 @@ namespace Components.Common
                     ;
                     if (i.ToString() == item.Value || Enum.GetName(propertyType, i) == item.Value)
                     {
-#pragma warning disable CS8601 // Possible null reference assignment.
-                        return values != null && values.GetValue(i) != null ? Enum.Parse(propertyType, values.GetValue(i).ToString()) : null;
-#pragma warning restore CS8601 // Possible null reference assignment.
+                        return values != null && values.GetValue(i) != null ? Enum.Parse(propertyType, values?.GetValue(i)?.ToString() ?? "0") : null;
                     }
                 };
             }
