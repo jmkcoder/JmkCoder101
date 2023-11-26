@@ -8,6 +8,9 @@
 }
 
 <div @id class="callout callout-@color@(classes)">
-    <h4>@(!string.IsNullOrEmpty(Model.Title) && Model.Title.Trim() != string.Empty ? Model.Title : Html.Raw("&nbsp"))</h4>
-    <p>@(!string.IsNullOrEmpty(Model.Message) && Model.Message.Trim() != string.Empty ? Model.Message : Html.Raw("&nbsp"))</p>
+    @if (!string.IsNullOrEmpty(Model.Title) && Model.Title.Trim() != string.Empty)
+    {
+        <h4>@Html.Raw(Model.Title)</h4>
+    }
+    <p>@(!string.IsNullOrEmpty(Model.Message) && Model.Message.Trim() != string.Empty ? Html.Raw(Model.Message) : Html.Raw("&nbsp"))</p>
 </div>

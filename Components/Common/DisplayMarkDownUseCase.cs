@@ -1,24 +1,18 @@
+using Components.Component;
 using Components.Component.Interface;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Web;
 
 namespace Components.Common
 {
-    public class DisplayMarkDownUseCase<T> : PageModel where T : IComponentViewModel, new()
+    public class DisplayMarkDownUseCase : PageModel
     {
 
         private readonly RazorPageRenderer? _razorPageRenderer;
-        private readonly string? _name;
 
         public DisplayMarkDownUseCase()
         {
             _razorPageRenderer = RazorPageRenderer.Instance;
-            _name = typeof(T).Name.Replace("ViewModel", string.Empty);
         }
 
         public string Display(string filePath)
@@ -37,8 +31,9 @@ namespace Components.Common
 
         private string ReplacePlaceholdersWithPartialViews(string markdownContent)
         {
-            markdownContent = Regex.Replace(markdownContent, @"\{{" + _name + @"\s+(.*?)\}}", match =>
+            markdownContent = Regex.Replace(markdownContent, @"\{{(?<name>\w+)\s+(.*?)\}}", match =>
             {
+                var name = match.Groups["name"].Value.Trim();
                 var parameters = match.Groups[1].Value;
 
                 var parameterDictionary = parameters
@@ -46,12 +41,16 @@ namespace Components.Common
                     .Select(p => p.Split('='))
                     .ToDictionary(p => p[0], p => p[1].Trim('"'));
 
-                var model = new T();
-                foreach (var property in typeof(T).GetProperties())
+                var model = ComponentFactory.Instantiate(name);
+
+                if (model is null)
+                    return markdownContent;
+
+                foreach (var property in model.GetType().GetProperties())
                 {
                     if (parameterDictionary.ContainsKey(property.Name))
                     {
-                        var castValue = ConvertToObject(parameterDictionary.First(p => p.Key == property.Name));
+                        var castValue = ConvertToObject(parameterDictionary.First(p => p.Key == property.Name), model.GetType());
 
                         property.SetValue(model, castValue);
                     }
@@ -63,9 +62,11 @@ namespace Components.Common
             return markdownContent;
         }
 
-        private string Render(T model)
+        private string Render(IComponentViewModel model)
         {
-            var view = _razorPageRenderer?.RenderPageAsync($"~/{_name}/Views/Index.cshtml", model).Result;
+            var name = model.GetType().Name.Replace("ViewModel", "");
+
+            var view = _razorPageRenderer?.RenderPageAsync($"~/{name}/Views/Index.cshtml", model).Result;
 
             return view ?? string.Empty;
         }
@@ -75,9 +76,9 @@ namespace Components.Common
             return Markdig.Markdown.ToHtml(markdownContent);
         }
 
-        private object? ConvertToObject(KeyValuePair<string, string> item)
+        private object? ConvertToObject(KeyValuePair<string, string> item, Type type)
         {
-            var propertyType = typeof(T).GetProperties().FirstOrDefault(x => x.Name == item.Key)?.PropertyType;
+            var propertyType = type.GetProperties().FirstOrDefault(x => x.Name == item.Key)?.PropertyType;
 
             if (propertyType != null && propertyType.IsEnum)
             {
@@ -104,7 +105,7 @@ namespace Components.Common
             }
             else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(string) || propertyType == typeof(string))
             {
-                return item.Value;
+                return Markdig.Markdown.ToHtml(item.Value).Replace("\r","").Replace("\n", "").Replace("<p>", "<p style=\"margin-bottom: 0;\">");
             }
 
             return null;

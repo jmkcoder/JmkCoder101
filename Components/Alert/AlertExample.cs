@@ -1,6 +1,5 @@
 ﻿using Components.Common;
 using Components.Component.ViewModels;
-using Microsoft.Extensions.FileProviders;
 
 namespace Components.Alert
 {
@@ -8,14 +7,8 @@ namespace Components.Alert
     {
         protected override string? Description => "Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.";
 
-        protected override string? Documentation { get; set; }
-
         protected override List<ComponentViewModel> Samples()
         {
-            var displayMarkDownUseCase = new DisplayMarkDownUseCase<AlertViewModel>();
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Namespace);
-            Documentation = displayMarkDownUseCase.Display($"{path}/Documentation.md");
-
             return new List<ComponentViewModel>
                 {
                     new AlertViewModel
