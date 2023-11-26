@@ -26,7 +26,7 @@ namespace Components.Common
 
         private static string ReadMarkdownFromFile(string filePath)
         {
-            return System.IO.File.ReadAllText(filePath);
+            return System.IO.File.Exists(filePath) ? System.IO.File.ReadAllText(filePath) : string.Empty;
         }
 
         private string ReplacePlaceholdersWithPartialViews(string markdownContent)
