@@ -1,8 +1,6 @@
-﻿using Components.Alert;
-using Components.Badge;
-using Components.Callout;
+﻿using Components.Component.Interface;
 using Components.Component.ViewModels;
-using Components.Icon;
+using System.Reflection;
 
 namespace Components.Component
 {
@@ -10,23 +8,18 @@ namespace Components.Component
     {
         public static ComponentViewModel? Instantiate(string? name)
         {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var componentTypes = assembly.GetTypes().Where(t => typeof(IComponentViewModel).IsAssignableFrom(t) && t.IsClass);
+
             name += "ViewModel";
 
-            if (name == nameof(AlertViewModel))
+            foreach ( var componentType in componentTypes )
             {
-               return new AlertViewModel();
-            }
-            else if (name == nameof(BadgeViewModel))
-            {
-                return new BadgeViewModel();
-            }
-            else if (name == nameof(CalloutViewModel))
-            {
-                return new CalloutViewModel();
-            }
-            else if (name == nameof(IconViewModel))
-            {
-                return new IconViewModel();
+                if (componentType.Name == name)
+                {
+                    return Activator.CreateInstance(componentType) as ComponentViewModel;
+                }
             }
 
             return null;
