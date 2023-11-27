@@ -1,4 +1,5 @@
-﻿using Components.Component.Interface;
+﻿using Components.Common;
+using Components.Component.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -36,34 +37,7 @@ namespace Components.Component
         {
             foreach (var item in formValues)
             {
-                var propertyType = typeof(T).GetProperties().FirstOrDefault(x => x.Name == item.Key)?.PropertyType;
-
-                if (propertyType != null && propertyType.IsEnum)
-                {
-                    var values = Enum.GetValues(propertyType);
-
-                    for (var i = 0; i < values.Length; i++)
-                    {
-                        if (i.ToString() == item.Value)
-                        {
-#pragma warning disable CS8604 // Possible null reference argument.
-                            dictionary[item.Key] = values.GetValue(i) != null ? Enum.Parse(propertyType, values.GetValue(i)?.ToString()) : null;
-#pragma warning restore CS8604 // Possible null reference argument.
-                        }
-                    };
-                }
-                else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(int) || propertyType == typeof(int))
-                {
-                    dictionary[item.Key] = item.Value != null ? int.Parse(item.Value) : 0;
-                }
-                else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(bool) || propertyType == typeof(bool))
-                {
-                    dictionary[item.Key] = item.Value != null ? bool.Parse(item.Value) : 0;
-                }
-                else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(string) || propertyType == typeof(string))
-                {
-                    dictionary[item.Key] = item.Value;
-                }
+                dictionary[item.Key] = ComponentUtilities.ConvertToObject(item, typeof(T));
             }
 
             var json = JsonSerializer.Serialize(dictionary);
