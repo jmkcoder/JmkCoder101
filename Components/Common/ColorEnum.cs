@@ -1,5 +1,8 @@
-﻿namespace Components.Common
+﻿using System.Text.Json.Serialization;
+
+namespace Components.Common
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ColorEnum
     {
         Primary,
