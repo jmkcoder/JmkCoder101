@@ -1,10 +1,8 @@
 ﻿@using Components.Icon;
 @model IconViewModel
-
 @{
     var color = @Model.Color.ToString().ToLower();
     var id = !string.IsNullOrEmpty(Model.Id) && Model.Id.Trim() != string.Empty ? $"id={Model.Id.Trim()}" : string.Empty;
     var classes = !string.IsNullOrEmpty(Model.Classes) ? $" {Model.Classes.Trim()}" : string.Empty;
 }
-
 <i @id class="@(Model.IsSolid ? "fas" : "far") fa-@Model.Icon@(classes) icon-@color"></i>

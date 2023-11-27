@@ -1,5 +1,6 @@
 ﻿using Components.Common;
 using Components.Component.ViewModels;
+using Components.Icon;
 
 namespace Components.Alert
 {
@@ -8,5 +9,6 @@ namespace Components.Alert
         public string? Text { get; set; }
         public ColorEnum Color { get; set; }
         public bool IsDismissible { get; set; }
+        public IconViewModel? Icon { get; set; }
     }
 }

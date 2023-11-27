@@ -42,7 +42,7 @@ namespace Components.Common.MarkDown
             {
                 // Apply your custom transformation logic here
                 // For example, using Markdig to convert markdown to HTML
-                return Markdig.Markdown.ToHtml(input).Replace("\r", "").Replace("\n", "").Replace("<p>", "<p style=\"margin-bottom: 0;\">");
+                return Markdig.Markdown.ToHtml(input).Replace("\r", "").Replace("\n", "").Replace("<p>", "").Replace("</p>", "");
             }
 
             private string ReverseCustomTransformation(string input)

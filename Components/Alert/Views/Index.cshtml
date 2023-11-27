@@ -9,6 +9,10 @@
 }
 
 <div @id class="alert alert-@color mb-0@(dismissable)@(classes)" role="alert">
+    @if (Model.Icon != null)
+    {
+        @await Html.PartialAsync("~/Icon/Views/Index.cshtml", Model.Icon)<span>&nbsp</span>
+    }
     @(!string.IsNullOrEmpty(Model.Text) && Model.Text.Trim() != string.Empty ? Html.Raw(Model.Text) : Html.Raw("&nbsp;"))
     @if (Model.IsDismissible)
     {
