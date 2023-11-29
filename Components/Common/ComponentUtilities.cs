@@ -32,7 +32,7 @@
             }
             else if (propertyType != null && Nullable.GetUnderlyingType(propertyType) == typeof(string) || propertyType == typeof(string))
             {
-                return Markdig.Markdown.ToHtml(item.Value).Replace("\r", "").Replace("\n", "").Replace("<p>", "<p style=\"margin-bottom: 0;\">");
+                return item.Value;
             }
 
             return null;

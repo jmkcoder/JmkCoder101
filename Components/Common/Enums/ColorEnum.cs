@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Components.Common
+namespace Components.Common.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ColorEnum

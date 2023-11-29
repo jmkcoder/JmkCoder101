@@ -1,8 +1,36 @@
-﻿@using Components.Icon;
+﻿@using Components.Common.Enums
+@using Components.Icon;
 @model IconViewModel
 @{
     var color = @Model.Color.ToString().ToLower();
     var id = !string.IsNullOrEmpty(Model.Id) && Model.Id.Trim() != string.Empty ? $"id={Model.Id.Trim()}" : string.Empty;
     var classes = !string.IsNullOrEmpty(Model.Classes) ? $" {Model.Classes.Trim()}" : string.Empty;
+
+    var size = string.Empty;
+
+    switch(Model.Size)
+    {
+        case SizeEnum.xxs:
+            size = "2xs";
+            break;
+        case SizeEnum.xs:
+            size = "xs";
+            break;
+        case SizeEnum.sm:
+            size = "xs";
+            break;
+        case SizeEnum.md:
+            size = "md";
+            break;
+        case SizeEnum.lg:
+            size = "lg";
+            break;
+        case SizeEnum.xl:
+            size = "xl";
+            break;
+        case SizeEnum.xxl:
+            size = "2xl";
+            break;
+    }
 }
-<i @id class="@(Model.IsSolid ? "fas" : "far") fa-@Model.Icon@(classes) icon-@color"></i>
+<i @id class="@(Model.IsSolid ? "fas" : "far") fa-@Model.Icon@(classes) icon-@color fa-@size"></i>

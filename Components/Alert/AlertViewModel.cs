@@ -1,4 +1,4 @@
-﻿using Components.Common;
+﻿using Components.Common.Enums;
 using Components.Component.ViewModels;
 using Components.Icon;
 

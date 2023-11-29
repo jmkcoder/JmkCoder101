@@ -15,12 +15,18 @@
             {
                 @await Html.PartialAsync(Model.ViewPath, component)
 
-                if (index < Model.Components.Count - 1 &&
-                (Model.WithSpace || Model.SpaceIndex.Contains(index)))
+                if (index < Model.Components.Count - 1)
                 {
-                    <div></div>
-                    <br class="my-5" />
-                    <div></div>
+                    if (Model.WithSpace || Model.SpaceIndex.Contains(index))
+                    {
+                        <div></div>
+                        <br class="my-5" />
+                        <div></div>
+                    }
+                    else
+                    {
+                        <span>&nbsp;</span>
+                    }
                 }
             }
         }
@@ -56,18 +62,26 @@
     <code class="language-csharp">
 public class @Model?.Components?[0].GetType().Name
 {
-    @{
-        var properties = Html.GetSourceCode(Model?.Components?[0].GetType());
+            @{
+                var properties = Html.GetSourceCode(Model?.Components?[0].GetType());
 
-        if (properties is not null)
-        {
-            foreach (var property in properties)
-            {
-    <span>public </span>@property.PropertyType.Name<span> </span>@property.Name<span> { get; set; }</span>
+                if (properties is not null)
+                {
+                    foreach (var property in properties)
+                    {
+                <span>public </span>
+
+                        @property.PropertyType.Name
+
+                <span> </span>
+
+                        @property.Name
+
+                <span> { get; set; }</span>
+                    }
+
+                }
             }
-                
-        }
-    }
 }
     </code>
     </pre>

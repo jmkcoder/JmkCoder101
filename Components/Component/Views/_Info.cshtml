@@ -3,6 +3,7 @@
 @using Components.Component.Extensions;
 @using Components.Component.ViewModels;
 @using Components.Icon;
+@using Components.Common.Enums;
 @model ExampleViewModel
 
 <form action="@Url.ActionLink("Demo", Model?.Components?[0].GetType().Name.Replace("ViewModel", string.Empty))" method="post" id="DemoForm">

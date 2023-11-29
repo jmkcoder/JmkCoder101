@@ -1,4 +1,4 @@
-﻿using Components.Common;
+﻿using Components.Common.Enums;
 using Components.Component.ViewModels;
 
 namespace Components.Icon
@@ -7,6 +7,7 @@ namespace Components.Icon
     {
         public string? Icon { get; set; }
         public ColorEnum Color { get; set; }
+        public SizeEnum Size { get; set; } = SizeEnum.lg;
         public bool IsSolid { get; set; }
     }
 }

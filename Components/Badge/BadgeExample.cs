@@ -1,5 +1,5 @@
 ﻿using Components.Callout;
-using Components.Common;
+using Components.Common.Enums;
 using Components.Component.ViewModels;
 
 namespace Components.Badge
