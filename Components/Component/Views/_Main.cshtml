@@ -69,15 +69,7 @@ public class @Model?.Components?[0].GetType().Name
                 {
                     foreach (var property in properties)
                     {
-                <span>public </span>
-
-                        @property.PropertyType.Name
-
-                <span> </span>
-
-                        @property.Name
-
-                <span> { get; set; }</span>
+    <span>public </span>@property.PropertyType.Name<span> </span>@property.Name<span> { get; set; }</span>
                     }
 
                 }
